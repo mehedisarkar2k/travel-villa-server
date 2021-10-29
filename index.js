@@ -27,6 +27,11 @@ const server = async () => {
     const database = client.db("travelVila");
     const cruiseCollection = database.collection("cruiseCollection");
 
+    app.get("/cruises", async (req, res) => {
+      const cursor = cruiseCollection.find({});
+      res.json(await cursor.toArray());
+    });
+
     console.log("Database Connected");
   } finally {
     // await client.close();
