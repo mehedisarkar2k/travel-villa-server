@@ -74,6 +74,35 @@ const server = async () => {
       console.log(result);
     });
 
+    // update order for a id
+    app.put("/updateOrder", async (req, res) => {
+      const filter = { _id: req.query.pdID };
+      const data = req.body;
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: {
+          status: data.status,
+        },
+      };
+
+      const result = await orderCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+
+      res.send(result);
+    });
+
+    // add Package
+    app.post("/addPackage", async (req, res) => {
+      const data = req.body;
+      const result = await cruiseCollection.insertOne(data);
+
+      res.send(result);
+    });
+
     console.log("Database Connected");
   } finally {
     // await client.close();
