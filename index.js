@@ -64,6 +64,16 @@ const server = async () => {
       res.json(await cursor.toArray());
     });
 
+    // delete order for a id
+    app.delete("/cancelOrder", async (req, res) => {
+      const result = await orderCollection.deleteOne({
+        _id: req.query.pdID,
+      });
+
+      res.send(result);
+      console.log(result);
+    });
+
     console.log("Database Connected");
   } finally {
     // await client.close();
