@@ -28,10 +28,17 @@ const server = async () => {
     const database = client.db("travelVila");
     const cruiseCollection = database.collection("cruiseCollection");
     const orderCollection = database.collection("orderCollection");
+    const hotelsCollection = database.collection("hotels");
 
     // get all data
     app.get("/cruises", async (req, res) => {
       const cursor = cruiseCollection.find({});
+      res.json(await cursor.toArray());
+    });
+
+    // get all hotels data
+    app.get("/hotels", async (req, res) => {
+      const cursor = hotelsCollection.find({});
       res.json(await cursor.toArray());
     });
 
