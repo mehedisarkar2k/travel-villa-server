@@ -27,17 +27,41 @@ const server = async () => {
     await client.connect();
     const database = client.db("travelVila");
     const cruiseCollection = database.collection("cruiseCollection");
+    const orderCollection = database.collection("orderCollection");
 
+    // get all data
     app.get("/cruises", async (req, res) => {
       const cursor = cruiseCollection.find({});
       res.json(await cursor.toArray());
     });
 
+    // get single data with id
     app.get("/cruises/:id", async (req, res) => {
       const result = await cruiseCollection.findOne({
         _id: ObjectId(req.params.id),
       });
       res.json(result);
+    });
+
+    // add new order
+    app.post("/addOrder", async (req, res) => {
+      const orderItem = req.body;
+      const result = await orderCollection.insertOne(orderItem);
+      res.send(result);
+    });
+
+    // get all order
+    app.get("/manageOrders", async (req, res) => {
+      const cursor = orderCollection.find({});
+      res.json(await cursor.toArray());
+    });
+
+    // get order for a email
+    app.get("/myOrders", async (req, res) => {
+      const cursor = orderCollection.find({
+        email: req.query.email,
+      });
+      res.json(await cursor.toArray());
     });
 
     console.log("Database Connected");
