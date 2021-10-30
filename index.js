@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
+// const ObjectId = require("mongodb").ObjectId;
 const port = process.env.PORT || 5000;
 require("dotenv").config();
 
@@ -30,6 +31,13 @@ const server = async () => {
     app.get("/cruises", async (req, res) => {
       const cursor = cruiseCollection.find({});
       res.json(await cursor.toArray());
+    });
+
+    app.get("/cruises/:id", async (req, res) => {
+      const result = await cruiseCollection.findOne({
+        _id: ObjectId(req.params.id),
+      });
+      res.json(result);
     });
 
     console.log("Database Connected");
