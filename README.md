@@ -1,6 +1,6 @@
 # tourism-or-delivery-website-server-side-mehedisarkar2k
 
-## Hello welcome to [Travel Vila Server](https://travel-vila.web.app/).
+## Hello welcome to [Travel Vila Website](https://travel-vila.web.app/).
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ https://travel-vila.web.app/
 
 ## Server Homepage
 
-> - https://peaceful-plateau-88614.herokuapp.com/
+https://peaceful-plateau-88614.herokuapp.com/
 
 ## How to run
 
@@ -22,7 +22,7 @@ https://travel-vila.web.app/
    ```sh
    git clone https://github.com/programming-hero-web-course1/tourism-or-delivery-website-server-side-mehedisarkar2k
    ```
-2. Run
+2. Run to install dependencies
    ```sh
    yarn
    ```
@@ -30,7 +30,7 @@ https://travel-vila.web.app/
    ```sh
    yarn dev
    ```
-4. This app should be available in http://localhost:3000/
+4. This app should be available in http://localhost:5000/
 
 ## You can access data from following links
 
