@@ -74,7 +74,7 @@ const server = async () => {
     // delete order for a id
     app.delete("/cancelOrder", async (req, res) => {
       const result = await orderCollection.deleteOne({
-        _id: req.query.pdID,
+        _id: ObjectId(req.query.pdID),
       });
 
       res.send(result);
@@ -83,7 +83,7 @@ const server = async () => {
 
     // update order for a id
     app.put("/updateOrder", async (req, res) => {
-      const filter = { _id: req.query.pdID };
+      const filter = { _id: ObjectId(req.query.pdID) };
       const data = req.body;
       const options = { upsert: true };
 
